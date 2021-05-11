@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class People extends SpotifyModel {
+public class Person extends SpotifyModel {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "people_has_songs",
-            joinColumns = {@JoinColumn(name = "people")},
+            name = "person_has_songs",
+            joinColumns = {@JoinColumn(name = "person")},
             inverseJoinColumns = {@JoinColumn(name = "song")}
     )
     Set<Song> songs = new HashSet<>();

@@ -28,5 +28,5 @@ public class Song extends SpotifyModel {
     @Getter
     @Setter
     @ManyToMany(mappedBy = "songs")
-    private Set<People> people = new HashSet<>();
+    private Set<Person> people = new HashSet<>();
 }
