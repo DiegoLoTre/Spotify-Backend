@@ -34,11 +34,23 @@ public class Song extends SpotifyModel {
 
     @Getter
     @Setter
-    @ManyToMany(mappedBy = "songs")
-    private Set<Playlist> playlists = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "playlist_has_songs",
+            joinColumns = {@JoinColumn(name = "song")},
+            inverseJoinColumns = {@JoinColumn(name = "playlist")}
+    )
+    @JsonIgnoreProperties("songs")
+    private Set<Playlist> playlists;
 
     @Getter
     @Setter
-    @ManyToMany(mappedBy = "songs")
-    private Set<Person> people = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "person_has_songs",
+            joinColumns = {@JoinColumn(name = "song")},
+            inverseJoinColumns = {@JoinColumn(name = "person")}
+    )
+    @JsonIgnoreProperties("songs")
+    private Set<Person> people;
 }

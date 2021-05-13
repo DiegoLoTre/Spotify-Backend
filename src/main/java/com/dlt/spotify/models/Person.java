@@ -1,17 +1,19 @@
 package com.dlt.spotify.models;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Entity
 public class Person extends SpotifyModel {
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "person_has_songs",
-            joinColumns = {@JoinColumn(name = "person")},
-            inverseJoinColumns = {@JoinColumn(name = "song")}
-    )
-    Set<Song> songs = new HashSet<>();
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "people")
+    @JsonIgnoreProperties("people")
+    private Set<Song> songs;
 }
