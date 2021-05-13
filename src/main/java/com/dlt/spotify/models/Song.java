@@ -1,5 +1,6 @@
 package com.dlt.spotify.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,17 @@ public class Song extends SpotifyModel {
     @Getter
     @Setter
     private int spotify_lap, spotify_pc;
+
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "artist_play_songs",
+            joinColumns = {@JoinColumn(name = "song")},
+            inverseJoinColumns = {@JoinColumn(name = "artist")}
+    )
+    @JsonIgnoreProperties("songs")
+    private Set<Artist> artists;
 
     @Getter
     @Setter
