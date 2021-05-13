@@ -23,4 +23,7 @@ public class SongService {
         return songRepository.findAll();
     }
 
+    public int sort_song(int spotify_pc) {
+        return songRepository.sort_song(spotify_pc);
+    }
 }

@@ -25,6 +25,8 @@ public class SongController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Void> createSong(@RequestBody Song song) {
         try {
+            if (song.getSpotify_pc() != 0) songService.sort_song(song.getSpotify_pc());
+
             songService.saveSong(song);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
