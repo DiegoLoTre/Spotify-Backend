@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
-public class SpotifyService extends TokenHandler {
+public class SpotifyService {
 
     private final TokenRepository tokenRepository;
 
@@ -46,7 +46,8 @@ public class SpotifyService extends TokenHandler {
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         if (token.getExpire_at().before(now)) {
-            token = updateAccessToken(token);
+            TokenHandler tokenHandler = new TokenHandler();
+            token = tokenHandler.updateAccessToken(token);
             tokenRepository.save(token);
         }
 
