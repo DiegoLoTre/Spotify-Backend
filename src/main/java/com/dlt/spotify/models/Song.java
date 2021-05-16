@@ -18,7 +18,7 @@ public class Song extends SpotifyModel {
 
     @Getter
     @Setter
-    private int spotify_lap, spotify_pc;
+    private int spotify, lastfm;
 
     @Getter
     @Setter
