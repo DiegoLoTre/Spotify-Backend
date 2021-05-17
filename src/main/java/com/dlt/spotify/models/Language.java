@@ -1,5 +1,6 @@
 package com.dlt.spotify.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +21,6 @@ public class Language {
 
     @Getter @Setter
     @OneToMany(mappedBy = "language")
+    @JsonIgnoreProperties({"artists", "playlists", "people", "language"})
     private Set<Song> songs;
 }
