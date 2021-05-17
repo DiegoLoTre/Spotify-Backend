@@ -52,4 +52,9 @@ public class Song extends SpotifyModel {
     )
     @JsonIgnoreProperties("songs")
     private Set<Person> people;
+
+    @Getter @Setter
+    @ManyToOne()
+    @JoinColumn(name = "language_id")
+    private Language language;
 }
